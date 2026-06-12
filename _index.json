@@ -1,0 +1,17 @@
+{
+  "repo": "C3-CRUNCH-LABS-PORTFOLIO",
+  "files": [
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "title": "Contributor Covenant Code of Conduct"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "title": "Contributing to Crunch Labs Portfolio"
+    },
+    {
+      "path": "README.md",
+      "title": "C3 Crunch Labs"
+    }
+  ]
+}
