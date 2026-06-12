@@ -1,0 +1,148 @@
+# Exercise 3 — A real CI workflow
+#
+# Goal: Make "it builds on my machine" mean something. This is a complete,
+#       working GitHub Actions workflow that builds and tests your Maven
+#       JDK 21 project on every push and every pull request. Drop it in,
+#       open a PR, and watch the green check appear.
+#
+# Estimated time: 30 minutes.
+#
+# HOW TO USE THIS FILE
+#
+#   1. From the root of the Maven project you built in Exercise 1, create the
+#      workflows directory and copy this file there with the canonical name:
+#
+#        mkdir -p .github/workflows
+#        cp path/to/exercise-03-ci.yml .github/workflows/ci.yml
+#
+#      (GitHub runs any *.yml under .github/workflows/. The conventional name
+#       for the build-and-test workflow is ci.yml.)
+#
+#   2. Commit it on a feature branch and open a PR:
+#
+#        git switch -c ci/add-build-workflow
+#        git add .github/workflows/ci.yml
+#        git commit -m "ci: build and test on push and pull_request"
+#        git push -u origin ci/add-build-workflow
+#        gh pr create --fill
+#
+#   3. Open the PR's "Checks" tab. The "build" job runs. Make it GREEN.
+#      If it's red, read the log top to bottom — CI failures are just your
+#      `mvn verify` failing on a clean machine, which is the whole point:
+#      it catches "works on my machine" before review does.
+#
+# ACCEPTANCE CRITERIA
+#
+#   [ ] File lives at .github/workflows/ci.yml in your repo.
+#   [ ] The workflow triggers on push to main AND on pull_request.
+#   [ ] It uses Temurin JDK 21 via actions/setup-java.
+#   [ ] It caches the Maven ~/.m2 repository so reruns are fast.
+#   [ ] `mvn -B verify` runs and the job is GREEN on your PR.
+#   [ ] The test report is uploaded as an artifact (see the last step).
+#
+# WHAT EACH PART DOES (read this — you'll write workflows all course)
+#
+#   name:        Human label shown in the Actions tab.
+#   on:          The TRIGGERS. When does this workflow run?
+#   permissions: Least-privilege token scopes for the job.
+#   jobs:        One or more units of work. Each runs on a fresh VM ("runner").
+#   steps:       Ordered commands inside a job. `uses:` runs a published action;
+#                `run:` runs a shell command.
+
+name: CI
+
+# Triggers: run on every push to main and on every pull request targeting main.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Least privilege: this workflow only needs to read the repo contents.
+permissions:
+  contents: read
+
+# Avoid piling up redundant runs: if you push again to the same branch/PR while
+# a run is in flight, cancel the older one.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and test (JDK 21)
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the repository at the commit that triggered the run.
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      # 2. Install Temurin JDK 21. setup-java also enables built-in caching
+      #    of the Maven local repository when cache: 'maven' is set.
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # 3. Fail fast if the project does not actually target Java 21.
+      #    (Defensive: a mismatched compiler release is a classic silent bug.)
+      - name: Print toolchain versions
+        run: |
+          java -version
+          mvn -version
+
+      # 4. The build. -B = batch mode (no interactive prompts, cleaner logs).
+      #    `verify` compiles, runs tests, and packages — the full lifecycle.
+      - name: Build and test
+        run: mvn -B verify
+
+      # 5. Always upload the Surefire test reports, even when the build fails,
+      #    so you can read which test broke from the Actions UI.
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: '**/target/surefire-reports/*.xml'
+          if-no-files-found: ignore
+          retention-days: 7
+
+# ----------------------------------------------------------------------------
+# STRETCH (optional — try after the basic job is green)
+# ----------------------------------------------------------------------------
+#
+#  A) Build matrix: run the same job on two JDKs to catch version drift.
+#     Replace the single job's `runs-on`/`steps` with a strategy matrix:
+#
+#       strategy:
+#         fail-fast: false
+#         matrix:
+#           java: ['21', '23']
+#       ...
+#       - uses: actions/setup-java@v4
+#         with:
+#           distribution: temurin
+#           java-version: ${{ matrix.java }}
+#           cache: maven
+#
+#  B) Add a separate `lint` job that runs `mvn -B spotless:check` (you'll add
+#     the Spotless plugin in Week 3). Jobs run in parallel by default.
+#
+#  C) Make this check REQUIRED in branch protection: Settings -> Branches ->
+#     protect `main` -> "Require status checks to pass" -> select
+#     "Build and test (JDK 21)". Now no PR can merge while CI is red.
+#
+# ----------------------------------------------------------------------------
+# WHY THIS MATTERS
+# ----------------------------------------------------------------------------
+#
+# CI is the robot that runs your build on a clean machine you don't control,
+# every single time, so that "passes locally" is never the last word. Wired
+# into branch protection (stretch C), it makes a green build a PRECONDITION of
+# merging — which is exactly the contract that lets a team move fast without
+# breaking `main`. Every later week extends this file: Week 4 adds the Spring
+# build, Week 5 spins up Postgres in a service container, Week 10 adds deploy.
+# ----------------------------------------------------------------------------

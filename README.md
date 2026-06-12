@@ -35,9 +35,23 @@ If you have any questions or feedback, feel free to reach out. Happy coding! ðŸ’
 
 | Section | Count |
 | --- | --- |
-| Curriculum entries | 0 |
+| Curriculum entries | 11 |
 | Projects | 0 |
 | Past sessions | 1 |
+
+## Curriculum
+
+- [SYLLABUS](curriculum/SYLLABUS.md)
+- [week 01 agile git and the jdk toolchain](curriculum/week-01-agile-git-and-the-jdk-toolchain/README.md)
+- [week 02 java core and the jvm](curriculum/week-02-java-core-and-the-jvm/README.md)
+- [week 03 oop collections and testing](curriculum/week-03-oop-collections-and-testing/README.md)
+- [week 04 spring boot rest basics](curriculum/week-04-spring-boot-rest-basics/README.md)
+- [week 05 persistence jpa and postgres](curriculum/week-05-persistence-jpa-and-postgres/README.md)
+- [week 06 api design and auth](curriculum/week-06-api-design-and-auth/README.md)
+- [week 07 react native basics](curriculum/week-07-react-native-basics/README.md)
+- [week 08 navigation and app state](curriculum/week-08-navigation-and-app-state/README.md)
+- [week 09 full stack integration](curriculum/week-09-full-stack-integration/README.md)
+- [week 10 capstone ship the full stack app](curriculum/week-10-capstone-ship-the-full-stack-app/README.md)
 
 ## In this course
 

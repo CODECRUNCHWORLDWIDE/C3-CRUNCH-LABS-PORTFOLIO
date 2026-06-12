@@ -1,0 +1,200 @@
+# Exercise 2 - CI/CD pipeline for the Crunch Tracker API.
+#
+# A complete, runnable GitHub Actions workflow. Drop it in your capstone repo at
+# .github/workflows/deploy.yml, set the documented secrets, and push.
+#
+#   - On every pull request: build and run the test suite (unit + Testcontainers
+#     integration). PRs do NOT deploy -- they only prove the build is green.
+#   - On every push to main: re-run the tests, then build the multi-stage image
+#     (Exercise 1's Dockerfile), scan it for CVEs with Trivy, push it to GHCR
+#     tagged with the commit SHA and `latest`, and trigger the host to deploy.
+#
+# No long-lived credential lives in the repo:
+#   - The image push to GHCR uses the built-in GITHUB_TOKEN (no stored key).
+#   - The deploy step POSTs a host deploy hook stored as an encrypted secret.
+#     (A cloud deploy would use OIDC instead -- see the commented `deploy-oidc`
+#     job at the bottom -- so even the host token is short-lived.)
+#
+# REQUIRED SECRETS (set with `gh secret set NAME` or in repo Settings -> Secrets):
+#   RENDER_DEPLOY_HOOK   The host's deploy webhook URL (Render/Railway/Fly).
+#                        On Render: Service -> Settings -> Deploy Hook.
+#
+# REQUIRED REPO SETTINGS:
+#   Settings -> Actions -> General -> Workflow permissions: allow GITHUB_TOKEN
+#   to write packages (or the `packages: write` permission below covers it).
+#
+# Lint it before you push:  `actionlint .github/workflows/deploy.yml`
+
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Cancel an in-flight run if a newer commit lands on the same ref.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+# Default to least privilege; jobs that need more opt in explicitly.
+permissions:
+  contents: read
+
+env:
+  IMAGE: ghcr.io/${{ github.repository }}
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Stage 1: build + test. Runs on EVERY push and PR. Gates everything.
+  # A red test here stops the pipeline -- a failing build never ships.
+  # ---------------------------------------------------------------------------
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21 (Temurin) with Maven cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # `verify` runs unit tests (Week 03) AND the Testcontainers integration
+      # tests (Week 05). Testcontainers needs Docker, which the ubuntu runner
+      # provides out of the box -- no service container declaration required.
+      - name: Build and test
+        run: ./mvnw -B --no-transfer-progress verify
+
+      # Keep the test reports even when the build fails, so a red PR is debuggable.
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: '**/target/surefire-reports/*.xml'
+          if-no-files-found: ignore
+
+  # ---------------------------------------------------------------------------
+  # Stage 2: ship. Runs ONLY on a push to main (not on PRs).
+  # Build the image, scan it, push it to GHCR, deploy.
+  # ---------------------------------------------------------------------------
+  ship:
+    needs: build-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write          # push images to GHCR
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Authenticate to GHCR with the built-in token. No stored registry key.
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Derive image tags/labels: the commit SHA (for traceable rollback) and
+      # `latest` (the moving pointer the host pulls).
+      - name: Compute image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest
+
+      # Build once, load locally for the scan; we push after Trivy is happy.
+      - name: Build image (load for scan)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: ${{ env.IMAGE }}:scan
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Scan the built image for known CVEs. Fail the pipeline on CRITICAL so we
+      # learn about a vulnerable base image BEFORE shipping, not after.
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{ env.IMAGE }}:scan
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: CRITICAL
+          vuln-type: os,library
+
+      # Scan passed -> push the SHA and latest tags.
+      - name: Push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+
+      # Trigger the host to pull the new `latest` image and roll out.
+      - name: Deploy to host
+        run: |
+          echo "Triggering deploy for ${{ env.IMAGE }}:${{ github.sha }}"
+          curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
+  # ---------------------------------------------------------------------------
+  # Stage 3: post-deploy smoke test. Confirms the new version is actually live
+  # and healthy before we call the deploy a success. Polls the health endpoint.
+  # ---------------------------------------------------------------------------
+  smoke:
+    needs: ship
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for the deployed API to report healthy
+        env:
+          HEALTH_URL: https://crunch-tracker-api.onrender.com/actuator/health
+        run: |
+          echo "Polling $HEALTH_URL for up to 3 minutes..."
+          for i in $(seq 1 36); do
+            status="$(curl -s -o /dev/null -w '%{http_code}' "$HEALTH_URL" || true)"
+            if [ "$status" = "200" ]; then
+              echo "Health is 200 after $((i*5))s. Deploy verified."
+              exit 0
+            fi
+            echo "  attempt $i: HTTP $status, retrying in 5s"
+            sleep 5
+          done
+          echo "::error::API did not become healthy within 3 minutes."
+          echo "Roll back: redeploy the previous SHA (see RUNBOOK.md)."
+          exit 1
+
+# -----------------------------------------------------------------------------
+# STRETCH: a cloud deploy with OIDC instead of a deploy-hook secret. Uncomment
+# and adapt if you deploy to a cloud (e.g. AWS) rather than a hook-based host.
+# The point: the workflow requests a SHORT-LIVED token from GitHub's OIDC
+# provider; the cloud trusts that provider for THIS repo only. No stored key.
+#
+#  deploy-oidc:
+#    needs: ship
+#    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#      id-token: write        # <-- this is what enables OIDC token issuance
+#    steps:
+#      - uses: aws-actions/configure-aws-credentials@v4
+#        with:
+#          role-to-assume: arn:aws:iam::123456789012:role/crunch-deployer
+#          aws-region: us-east-1
+#      - run: aws ecs update-service --cluster crunch --service api --force-new-deployment

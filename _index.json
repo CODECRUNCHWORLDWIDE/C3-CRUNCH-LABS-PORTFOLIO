@@ -12,6 +12,450 @@
     {
       "path": "README.md",
       "title": "C3 Crunch Labs"
+    },
+    {
+      "path": "curriculum/SYLLABUS.md",
+      "title": "C3 \u00b7 Crunch Labs Portfolio \u2014 Syllabus"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/README.md",
+      "title": "Week 1 \u2014 Agile, Git, and the JDK Toolchain"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/challenges/README.md",
+      "title": "Week 1 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/challenges/challenge-01-merge-conflict-rebase.md",
+      "title": "Challenge 1 \u2014 Resolve a Gnarly Conflict and Rebase a Messy Branch Clean"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/exercises/README.md",
+      "title": "Week 1 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/exercises/exercise-01-jdk-and-maven-setup.md",
+      "title": "Exercise 1 \u2014 JDK 21 + Maven Setup, Then Ship a PR"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/homework.md",
+      "title": "Week 1 Homework"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/lecture-notes/01-how-a-real-sprint-runs.md",
+      "title": "Lecture 1 \u2014 How a Real Sprint Runs: Scrum, Kanban, and the Ceremonies That Earn Their Keep"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/lecture-notes/02-git-for-teams.md",
+      "title": "Lecture 2 \u2014 Git for Teams: Trunk-Based Development, Feature Branches, and PR Review"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/mini-project/README.md",
+      "title": "Mini-Project \u2014 Stand Up the Crunch Tracker Team Repo and Board"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/quiz.md",
+      "title": "Week 1 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-01-agile-git-and-the-jdk-toolchain/resources.md",
+      "title": "Week 1 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/README.md",
+      "title": "Week 2 \u2014 Java Core and the JVM"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/challenges/README.md",
+      "title": "Week 2 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/challenges/challenge-01-transaction-ledger.md",
+      "title": "Challenge 1 \u2014 The Transaction Ledger"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/exercises/README.md",
+      "title": "Week 2 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/exercises/exercise-01-records-and-immutability.md",
+      "title": "Exercise 1 \u2014 Records and Immutability"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/homework.md",
+      "title": "Week 2 Homework"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/lecture-notes/01-java-the-language.md",
+      "title": "Lecture 1 \u2014 Java the Language: Types, Records, Sealed Interfaces, and Pattern-Matching switch"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/lecture-notes/02-what-the-jvm-actually-does.md",
+      "title": "Lecture 2 \u2014 What the JVM Actually Does: Bytecode, the Heap/Stack, and Garbage Collection"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/mini-project/README.md",
+      "title": "Mini-Project \u2014 Crunch Tracker: The Core Domain Model"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/quiz.md",
+      "title": "Week 2 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-02-java-core-and-the-jvm/resources.md",
+      "title": "Week 2 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/README.md",
+      "title": "Week 3 \u2014 OOP, Collections, and Testing"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/challenges/README.md",
+      "title": "Week 3 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/challenges/challenge-01-tame-the-god-class.md",
+      "title": "Challenge 1 \u2014 Tame the God Class"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/exercises/README.md",
+      "title": "Week 3 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/exercises/exercise-01-pick-the-collection.md",
+      "title": "Exercise 1 \u2014 Pick the Collection"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/homework.md",
+      "title": "Week 3 Homework"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/lecture-notes/01-oop-that-survives-review.md",
+      "title": "Lecture 1 \u2014 OOP That Survives Review"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/lecture-notes/02-testing-as-default.md",
+      "title": "Lecture 2 \u2014 Testing as Default"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/mini-project/README.md",
+      "title": "Mini-Project \u2014 Crunch Tracker: Clean Services Behind Interfaces, Fully Tested"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/quiz.md",
+      "title": "Week 3 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-03-oop-collections-and-testing/resources.md",
+      "title": "Week 3 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/README.md",
+      "title": "Week 4 \u2014 Spring Boot REST Basics"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/challenges/README.md",
+      "title": "Week 4 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/challenges/challenge-01-paginated-list-endpoint.md",
+      "title": "Challenge 1 \u2014 A Paginated, Filterable, Sortable List Endpoint"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/exercises/README.md",
+      "title": "Week 4 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/exercises/exercise-01-bootstrap-a-service.md",
+      "title": "Exercise 1 \u2014 Bootstrap a Service"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/homework.md",
+      "title": "Week 4 Homework"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/lecture-notes/01-spring-boot-from-first-principles.md",
+      "title": "Lecture 1 \u2014 Spring Boot 3 from First Principles"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/lecture-notes/02-clean-http-surface.md",
+      "title": "Lecture 2 \u2014 A Clean HTTP Surface"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/mini-project/README.md",
+      "title": "Mini-Project \u2014 Crunch Tracker REST API"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/quiz.md",
+      "title": "Week 4 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-04-spring-boot-rest-basics/resources.md",
+      "title": "Week 4 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/README.md",
+      "title": "Week 5 \u2014 Persistence: JPA and Postgres"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/challenges/README.md",
+      "title": "Week 5 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/challenges/challenge-01-hunt-the-n-plus-1.md",
+      "title": "Challenge 1 \u2014 Hunt the N+1"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/exercises/README.md",
+      "title": "Week 5 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/exercises/exercise-01-postgres-and-first-entity.md",
+      "title": "Exercise 1 \u2014 Postgres in Docker + Your First Entity"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/homework.md",
+      "title": "Week 5 Homework"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/lecture-notes/01-jpa-hibernate-and-the-n-plus-1-trap.md",
+      "title": "Lecture 1 \u2014 Spring Data JPA and Hibernate: Entities, Relationships, and the N+1 Trap"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/lecture-notes/02-schema-as-code-flyway-postgres-and-queries.md",
+      "title": "Lecture 2 \u2014 Schema as Code: Flyway Migrations, Postgres in Docker, and Repository Queries"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/mini-project/README.md",
+      "title": "Mini-Project \u2014 Persist Crunch Tracker on PostgreSQL"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/quiz.md",
+      "title": "Week 5 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-05-persistence-jpa-and-postgres/resources.md",
+      "title": "Week 5 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/README.md",
+      "title": "Week 6 \u2014 API Design and Auth"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/challenges/README.md",
+      "title": "Week 6 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/challenges/challenge-01-ownership-authorization.md",
+      "title": "Challenge 1 \u2014 Ownership Authorization That You Can Prove"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/exercises/README.md",
+      "title": "Week 6 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/exercises/exercise-01-design-the-v1-surface.md",
+      "title": "Exercise 1 \u2014 Design the v1 Surface"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/homework.md",
+      "title": "Week 6 Homework"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/lecture-notes/01-rest-api-design-that-ages-well.md",
+      "title": "Lecture 1 \u2014 REST API Design That Ages Well"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/lecture-notes/02-stateless-auth-with-spring-security-6.md",
+      "title": "Lecture 2 \u2014 Stateless Auth with Spring Security 6"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/mini-project/README.md",
+      "title": "Mini-Project \u2014 Accounts and Per-User Scoping for Crunch Tracker"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/quiz.md",
+      "title": "Week 6 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-06-api-design-and-auth/resources.md",
+      "title": "Week 6 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/README.md",
+      "title": "Week 7 \u2014 React Native Basics"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/challenges/README.md",
+      "title": "Week 7 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/challenges/challenge-01-spec-faithful-screen.md",
+      "title": "Challenge 1 \u2014 Build a Spec-Faithful Screen"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/exercises/README.md",
+      "title": "Week 7 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/exercises/exercise-01-scaffold-and-run.md",
+      "title": "Exercise 1 \u2014 Scaffold and Run"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/homework.md",
+      "title": "Week 7 Homework"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/lecture-notes/01-react-native-expo-and-typescript.md",
+      "title": "Lecture 1 \u2014 React Native with Expo and TypeScript"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/lecture-notes/02-state-effects-lists-and-styling.md",
+      "title": "Lecture 2 \u2014 State, Effects, Lists, and Styling"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/mini-project/README.md",
+      "title": "Mini-Project \u2014 Crunch Tracker Mobile Client (Habit List + Add Form)"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/quiz.md",
+      "title": "Week 7 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-07-react-native-basics/resources.md",
+      "title": "Week 7 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/README.md",
+      "title": "Week 8 \u2014 Navigation and App State"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/challenges/README.md",
+      "title": "Week 8 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/challenges/challenge-01-auth-gated-flow.md",
+      "title": "Challenge 1 \u2014 A Flicker-Free, Leak-Free Auth-Gated Flow"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/exercises/README.md",
+      "title": "Week 8 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/exercises/exercise-01-stack-and-tabs.md",
+      "title": "Exercise 1 \u2014 Typed Stack + Bottom Tabs"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/homework.md",
+      "title": "Week 8 Homework"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/lecture-notes/01-multi-screen-navigation.md",
+      "title": "Lecture 1 \u2014 Multi-Screen Apps: React Navigation, Typed Routes, Tabs, and Deep Links"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/lecture-notes/02-managing-state-on-purpose.md",
+      "title": "Lecture 2 \u2014 Managing State on Purpose: Context, Zustand, and Why Server State Is Different"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/mini-project/README.md",
+      "title": "Mini-Project \u2014 Crunch Tracker, Navigable and Stateful"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/quiz.md",
+      "title": "Week 8 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-08-navigation-and-app-state/resources.md",
+      "title": "Week 8 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/README.md",
+      "title": "Week 9 \u2014 Full-Stack Integration"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/challenges/README.md",
+      "title": "Week 9 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/challenges/challenge-01-offline-optimistic-checkin.md",
+      "title": "Challenge 1 \u2014 Offline-Resilient Optimistic Check-In"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/exercises/README.md",
+      "title": "Week 9 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/exercises/exercise-01-typed-api-client.md",
+      "title": "Exercise 1 \u2014 Typed API Client"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/homework.md",
+      "title": "Week 9 Homework"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/lecture-notes/01-wiring-the-client-to-the-api.md",
+      "title": "Lecture 1 \u2014 Wiring the Client to the API"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/lecture-notes/02-server-state-with-tanstack-query.md",
+      "title": "Lecture 2 \u2014 Server State with TanStack Query"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/mini-project/README.md",
+      "title": "Mini-Project \u2014 Connect Crunch Tracker to the Live Backend"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/quiz.md",
+      "title": "Week 9 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-09-full-stack-integration/resources.md",
+      "title": "Week 9 \u2014 Resources"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/README.md",
+      "title": "Week 10 \u2014 Capstone: Ship the Full-Stack App"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/challenges/README.md",
+      "title": "Week 10 \u2014 Challenges"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/challenges/challenge-01-clone-to-live-demo.md",
+      "title": "Challenge 1 \u2014 From a clean clone to a live demo, in one documented pipeline run"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/exercises/README.md",
+      "title": "Week 10 \u2014 Exercises"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/exercises/exercise-01-multi-stage-dockerfile.md",
+      "title": "Exercise 1 \u2014 Containerize the API with a multi-stage Dockerfile, run it against managed Postgres"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/homework.md",
+      "title": "Week 10 Homework"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/lecture-notes/01-from-repo-to-running.md",
+      "title": "Lecture 1 \u2014 From Repo to Running: Dockerizing Spring Boot, Deploying the API, and CI/CD"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/lecture-notes/02-shipping-the-mobile-app-and-the-runbook.md",
+      "title": "Lecture 2 \u2014 Shipping the Mobile App: EAS Builds, Release Config, the Demo, and the Runbook"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/mini-project/README.md",
+      "title": "Mini-Project \u2014 Ship Crunch Tracker: the deployed, installable, end-to-end product"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/quiz.md",
+      "title": "Week 10 \u2014 Quiz"
+    },
+    {
+      "path": "curriculum/week-10-capstone-ship-the-full-stack-app/resources.md",
+      "title": "Week 10 \u2014 Resources"
     }
   ]
 }
